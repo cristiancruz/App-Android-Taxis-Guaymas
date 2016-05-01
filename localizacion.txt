@@ -1,0 +1,57 @@
+  public void getLocationOnClick(View v) throws SecurityException {
+        try {
+            LocationManager locManager = (LocationManager) getSystemService((Context.LOCATION_SERVICE));
+            Location loc = locManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+
+            LatLng MyUbicacion = new LatLng(loc.getLatitude(),loc.getLongitude());
+            mMap.addMarker(new MarkerOptions()
+                    .position(MyUbicacion)
+                    .title("¡Aqui Estas!")
+                    .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ubicacion)));
+            mMap.moveCamera(CameraUpdateFactory.newLatLng(MyUbicacion));
+            
+        } catch(Exception e){
+            Toast.makeText(getApplicationContext(), "Sin conexión", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+------------------------------
+private Criteria getBestCriteria(){
+        Criteria req = new Criteria();
+        req.setAccuracy(Criteria.ACCURACY_FINE);
+        req.setAltitudeRequired(true);
+        return req;
+    }
+----------------------------------------
+
+
+public void getLocationOnClick3(View v) throws SecurityException {
+        try {
+            locationManager = (LocationManager) getApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+            proveedor = LocationManager.NETWORK_PROVIDER;
+            networkOn = locationManager.isProviderEnabled(proveedor);
+            locationManager.requestLocationUpdates(proveedor, 1500, 1, this);
+            if(networkOn){
+                Location lc=locationManager.getLastKnownLocation(proveedor);
+                if (lc !=null){
+                    try {
+                        LatLng MyUbicacion = new LatLng(lc.getLatitude(),lc.getLongitude());
+                        mMap.addMarker(new MarkerOptions()
+                                .position(MyUbicacion)
+                                .title("¡Aqui Estas!")
+                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.ubicacion)));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(MyUbicacion));
+
+                    } catch(Exception e){
+                        Toast.makeText(getApplicationContext(), "Ops no se donde estas", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+        } catch(Exception e){
+            Toast.makeText(getApplicationContext(), "Sin conexión", Toast.LENGTH_SHORT).show();
+        }
+
+    }

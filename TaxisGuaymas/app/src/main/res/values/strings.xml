@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Taxis Guaymas</string>
+    <string name="title_activity_main">Taxis Guaymas</string>
+    <string name="botonEnvio">Pedir taxi</string>
+    <string name="title_activity_list">Sitios de taxi</string>
+    <string name="slogan">A tu alcanse</string>
+    <string name="direccion">Ubicación desconocida</string>
+</resources>
